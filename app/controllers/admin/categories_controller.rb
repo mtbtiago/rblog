@@ -8,7 +8,8 @@ class Admin::CategoriesController < Admin::ApplicationController
     @category = Category.new(category_params)
     if @category.save
       flash[:notice] = 'Category Created'
-      redirect_to admin_categories_path
+      # redirect_to admin_categories_path # go to index after creation
+      redirect_to new_admin_category_path # continous insert
     else
       render 'new'
     end
@@ -40,11 +41,7 @@ class Admin::CategoriesController < Admin::ApplicationController
   end
 
   def index
-    if params[:search]
-      @categories = Category.search(params[:search]).all.order('created_at DESC').paginate(:per_page => 10, :page => params[:page])
-    else
-      @categories = Category.all.order('created_at DESC').paginate(:per_page => 10, :page => params[:page])
-    end
+    @categories = Category.all
   end
 
   private
