@@ -13,22 +13,22 @@
 
 ActiveRecord::Schema.define(version: 20141028113003) do
 
-  create_table "categories", force: :cascade do |t|
-    t.string   "name",       limit: 255
+  create_table "categories", force: true do |t|
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "comments", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.string   "email",      limit: 255
+  create_table "comments", force: true do |t|
+    t.string   "name"
+    t.string   "email"
     t.text     "body"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "posts", force: :cascade do |t|
-    t.string   "title",              limit: 255
+  create_table "posts", force: true do |t|
+    t.string   "title"
     t.integer  "category_id"
     t.integer  "user_id"
     t.text     "tags"
@@ -41,11 +41,11 @@ ActiveRecord::Schema.define(version: 20141028113003) do
     t.datetime "image_updated_at"
   end
 
-  create_table "users", force: :cascade do |t|
-    t.string   "name",          limit: 255
-    t.string   "email",         limit: 255
-    t.string   "password_hash", limit: 255
-    t.string   "password_salt", limit: 255
+  create_table "users", force: true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "password_hash"
+    t.string   "password_salt"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
