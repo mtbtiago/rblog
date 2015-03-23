@@ -16,7 +16,7 @@
     	</tr>
 	<% end %>
   </table>
-  <%= will_paginate @posts %>
+  <%= will_paginate @users, renderer: BootstrapPagination::Rails %>
 <% else %>
 	<p>There are no users</p>
 <% end %>
