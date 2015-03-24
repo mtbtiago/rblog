@@ -1,6 +1,4 @@
 class Admin::CategoriesController < Admin::ApplicationController
-  PAGINATION = 5
-
   def new
     @page_title = 'Add Category'
     @category = Category.new
@@ -38,22 +36,14 @@ class Admin::CategoriesController < Admin::ApplicationController
 
     flash[:notice] = 'Category Removed'
 
-    redirect_to admin_categories_path
+      redirect_to admin_categories_path
   end
 
   def index
     if params[:search]
-      @categories =
-        Category.
-        search(params[:search]).
-        all.
-        order('created_at DESC').paginate(:per_page => PAGINATION, :page => params[:page])
+      @categories = Category.search(params[:search]).all.order('created_at DESC').paginate(:per_page => 10, :page => params[:page])
     else
-      @categories =
-        Category.
-        all.
-        order('created_at DESC').
-        paginate(:per_page => PAGINATION, :page => params[:page])
+      @categories = Category.all.order('created_at DESC').paginate(:per_page => 10, :page => params[:page])
     end
   end
 
