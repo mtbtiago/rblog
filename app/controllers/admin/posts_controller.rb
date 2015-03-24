@@ -1,4 +1,5 @@
 class Admin::PostsController < Admin::ApplicationController
+  PAGINATE = 10
   def new
     @page_title = 'Add Post'
     @post = Post.new
@@ -53,12 +54,12 @@ class Admin::PostsController < Admin::ApplicationController
       @posts = Post.search(params[:search]).
         all.
           order('created_at DESC').
-            paginate(:per_page => 10, :page => params[:page])
+            paginate(:per_page => PAGINATE, :page => params[:page])
     else
       @posts = Post.
         all.
           order('created_at DESC').
-            paginate(:per_page => 10, :page => params[:page])
+            paginate(:per_page => PAGINATE, :page => params[:page])
     end
   end
 
